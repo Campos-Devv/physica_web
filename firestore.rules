@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow read access to student_accounts collection without authentication
+    match /student_accounts/{document=**} {
+      allow read: if true; // Public read access
+      allow write: if request.auth != null; // Only authenticated users can write
+    }
+    
+    // Default rule
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

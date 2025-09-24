@@ -1,0 +1,35 @@
+@layer components {
+    /* Table container */
+    .table-container {
+        @apply overflow-x-auto bg-white rounded-lg shadow-md border border-blue-300;
+    }
+
+    /* Data table */
+    .data-table {
+        @apply min-w-full divide-y divide-gray-200;
+    }
+
+    /* Table header */
+    .table-header {
+        @apply bg-blue-600 text-white text-sm uppercase font-medium tracking-wide;
+    }
+
+    .table-header th {
+        @apply px-6 py-3 text-left text-xs font-medium uppercase tracking-wider;
+    }
+
+    /* Table rows */
+    .table-row {
+        @apply hover:bg-gray-50 transition-colors duration-150;
+    }
+
+    /* Table cells */
+    .table-cell {
+        @apply px-6 py-4 whitespace-nowrap text-gray-700;
+    }
+
+    /* Table footer (optional) */
+    .table-footer {
+        @apply bg-gray-100 text-gray-600 text-sm font-medium tracking-wide;
+    }
+}

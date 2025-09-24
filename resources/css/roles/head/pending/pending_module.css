@@ -1,0 +1,178 @@
+/* Pending Module custom styles (mirrors Pending Quarter, different classes) */
+.pending-modules-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+/* Base layout wrappers */
+.pending-modules-wrapper {
+    @apply bg-white ring-1 ring-secondary rounded-lg shadow-md p-6 mb-8 transition-all duration-300;
+}
+.pending-module-section-header {
+    @apply flex items-center justify-between mb-10;
+}
+.pending-module-heading {
+    @apply text-xl font-semibold text-secondary;
+}
+
+/* Empty state */
+.pending-module-empty-state {
+    @apply rounded-xl bg-white p-10 text-center;
+}
+.pending-module-empty-icon {
+    @apply mx-auto mb-4 flex items-center justify-center text-secondary;
+}
+
+/* Grid container */
+.pending-modules-container {
+    @apply pending-modules-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 relative;
+}
+
+/* Loader height reservation */
+.pending-modules-container { transition: min-height 300ms ease; }
+.pending-modules-wrapper.is-loading .pending-modules-container {
+    min-height: var(--pm-original-height, 160px);
+}
+
+/* Card */
+.pending-module-card {
+    @apply relative bg-white rounded-xl ring-1 ring-secondary p-4 shadow-sm hover:shadow-md transition-shadow ease-out
+           flex flex-col min-h-[160px];
+}
+.pending-module-header {
+    @apply flex items-start justify-between mb-3 border-b border-transparent;
+}
+.pending-module-title {
+    @apply text-xl text-secondary font-semibold m-0 leading-snug;
+}
+.pending-module-body {
+    @apply px-0 pb-0 text-base font-medium text-gray-500 flex-grow;
+}
+.pending-module-footer {
+    @apply mt-auto pt-4;
+}
+.pending-module-actions {
+    @apply flex justify-center gap-4 flex-wrap;
+}
+
+/* Buttons */
+.pending-module-approve-btn,
+.pending-module-reject-btn {
+    @apply inline-flex items-center justify-center min-w-[120px] px-5 py-2 text-sm font-semibold rounded-md
+           transition-colors duration-150;
+}
+.pending-module-approve-btn {
+    @apply bg-transparent text-secondary ring-1 ring-secondary
+           hover:bg-primary hover:text-white hover:ring-primary
+           focus:bg-primary focus:text-white focus:ring-primary focus:outline-none;
+}
+.pending-module-reject-btn {
+    @apply bg-transparent text-secondary ring-1 ring-secondary
+           hover:bg-red-500 hover:text-white hover:ring-red-500
+           focus:bg-red-600 focus:text-white focus:outline-none;
+}
+
+/* Badge variants (status) */
+.pm-badge {
+    @apply inline-flex items-center gap-1 rounded-md px-4 py-1 text-sm font-semibold tracking-wide transition;
+}
+.pm-badge--pending { @apply bg-secondary text-white; }
+.pm-badge--review  { @apply bg-green-500 text-white; }
+.pm-badge--rejected{ @apply bg-red-500 text-white; }
+.pm-badge--approved{ @apply hidden; }
+
+/* New: flex container for title + badge */
+.pending-module-heading-group {
+    @apply flex items-start gap-2;
+}
+
+/* Modal */
+#pending-module-modal {
+    @apply fixed inset-0 z-[100] hidden items-center justify-center;
+}
+#pending-module-modal[aria-hidden="false"] { @apply flex; }
+.pending-module-modal-overlay { @apply absolute inset-0 bg-black/50; }
+.pending-module-modal-wrapper { @apply relative z-[110] mx-auto w-full max-w-2xl p-4; }
+.pending-module-modal-panel {
+    @apply relative w-full rounded-xl bg-white shadow-2xl overflow-hidden flex flex-col;
+    max-height: min(90vh, 720px);
+}
+.pending-module-header-modal {
+    @apply flex items-start justify-between px-6 py-4 border-b border-slate-200 bg-secondary text-white;
+}
+.pending-module-body-modal {
+    @apply px-6 py-5 space-y-4 text-sm flex-1 overflow-y-auto;
+    min-height: 0;
+}
+@supports (height: 100dvh) {
+    .pending-module-modal-panel { max-height: 92dvh; }
+}
+
+/* View button */
+.pending-module-view {
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-full
+           ring-1 ring-secondary text-secondary
+           hover:bg-secondary hover:ring-secondary hover:text-white
+           focus:bg-secondary focus:ring-secondary focus:text-white
+           transition-colors duration-150;
+}
+
+/* Mobile buttons full width */
+@media (max-width: 400px) {
+    .pending-module-actions { @apply flex-col items-stretch gap-2; }
+    .pending-module-approve-btn,
+    .pending-module-reject-btn { @apply w-full min-w-0; }
+}
+.pending-module-approve-btn i,
+.pending-module-reject-btn i { @apply pointer-events-none; }
+
+/* Filters */
+.pending-module-filters { @apply flex items-center gap-2; }
+.pending-module-filter-btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md
+           bg-transparent text-secondary ring-1 ring-secondary
+           hover:bg-secondary hover:text-white hover:ring-secondary transition-colors;
+}
+.pending-module-filter-btn.is-active { @apply bg-secondary text-white ring-secondary; }
+
+/* History list */
+.pm-history-list { @apply max-h-64 overflow-y-auto pr-1; }
+.pm-history-item { @apply flex items-start gap-3; }
+.pm-history-bullet { @apply mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0; }
+.pm-history-content { @apply flex-1; overflow-wrap: anywhere; word-break: break-word; }
+.pm-history-content [data-el="comment"] { @apply whitespace-pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
+.pm-history-meta { @apply text-xs text-gray-500; overflow-wrap: anywhere; word-break: break-word; }
+.pm-history-action { @apply text-xs font-semibold uppercase tracking-wide text-secondary; }
+
+/* Accordion */
+.pm-accordion-btn {
+    @apply w-full flex items-center justify-between rounded-md px-3 py-2
+           bg-slate-50 text-secondary ring-1 ring-secondary
+           hover:bg-slate-100 transition-colors;
+}
+.pm-accordion-caret { transition: transform 180ms ease; }
+.pm-accordion.is-open .pm-accordion-caret { transform: rotate(180deg); }
+.pm-accordion-content {
+    max-height: 0; opacity: 0; overflow: hidden;
+    transition: max-height 240ms ease, opacity 160ms ease;
+    margin-top: 0;
+}
+.pm-accordion.is-open .pm-accordion-content {
+    max-height: 20rem; opacity: 1; margin-top: .5rem;
+}
+.pm-accordion-panel { @apply rounded-md border-2 border-secondary bg-white p-3; word-break: break-word; overflow-wrap: anywhere; }
+
+/* Animations */
+@keyframes pmFadeInUp { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+@keyframes pmFadeOutDown { from { opacity: 1; transform: translateY(0);} to { opacity: 0; transform: translateY(8px);} }
+.pm-anim-in { animation: pmFadeInUp .28s ease-out both; will-change: transform, opacity; }
+.pm-anim-out { animation: pmFadeOutDown .22s ease-in forwards; will-change: transform, opacity; pointer-events: none; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pending-module-card, #pending-module-modal { @apply transition-none; }
+  .pm-anim-in, .pm-anim-out { animation: none !important; }
+}
+
+.pending-module-quarter {
+    @apply inline-flex items-center text-base font-semibold text-gray-500 mb-2;
+}

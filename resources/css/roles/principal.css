@@ -1,0 +1,41 @@
+@layer components {
+    /* Dashboard layout */
+    .principal-dashboard {
+        @apply container mx-auto pb-8 overflow-hidden select-none;
+    }
+    
+    .dashboard-title {
+        @apply text-xl font-bold text-secondary mb-8;
+    }
+    
+    /* Stats grid - make responsive */
+    .stats-grid {
+        @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8;
+    }
+    
+    /* Chart container - make responsive */
+    .chart-container {
+        @apply w-full overflow-hidden;
+    }
+    
+    /* Tab styles specific to principal dashboard */
+    .tab-container {
+        @apply mb-6;
+    }
+    
+    .tabs-list {
+        @apply flex flex-wrap -mb-px border-b border-gray-200;
+    }
+    
+    /* Principal-specific table adjustments */
+    .principal-table {
+        @apply mt-4;
+    }
+    
+    /* Prevent text selection and remove indicator pulse */
+    .no-select {
+        @apply select-none pointer-events-auto cursor-pointer;
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+    }
+}

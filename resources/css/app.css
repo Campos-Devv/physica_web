@@ -1,0 +1,34 @@
+@import './auth/login.css';
+@import './partials/sidebar.css';
+@import './components/card.css';
+@import './components/table.css';
+@import './components/chart.css';
+@import './components/dialog.css';
+@import './roles/principal.css';
+@import './roles/principal/assign_teachers.css';
+@import './roles/head/pending_content.css';
+@import "components/loading.css";
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --font-sans: 'Poppins', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+            'Segoe UI Symbol', 'Noto Color Emoji';
+
+        --color-primary: #2A3950; /* dark blue color */
+        --color-secondary: #509CDB; /* light blue color */
+        --color-white: #FAFAFA; /* white color */
+        --color-total-white: #FFFFFF; /* total white color */
+        --color-gray: #B0B0B0; /* gray color */
+        --color-red: #F54768; /* red color */
+        --color-black: #1F1C1B; /* black color */
+        --color-total-black: #000000; /* total black color */
+    }
+}
+
+/* Other global styles... */
+

@@ -1,0 +1,127 @@
+/* Pending Lesson custom styles (mirrors Modules, different classes) */
+.pending-lessons-grid { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4; }
+
+/* Base layout wrappers */
+.pending-lessons-wrapper { @apply bg-white ring-1 ring-secondary rounded-lg shadow-md p-6 mb-8 transition-all duration-300; }
+.pending-lesson-section-header { @apply flex items-center justify-between mb-10; }
+.pending-lesson-heading { @apply text-xl font-semibold text-secondary; }
+
+/* Empty state */
+.pending-lesson-empty-state { @apply rounded-xl bg-white p-10 text-center; }
+.pending-lesson-empty-icon { @apply mx-auto mb-4 flex items-center justify-center text-secondary; }
+
+/* Grid container */
+.pending-lessons-container { @apply pending-lessons-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 relative; }
+
+/* Loader height reservation */
+.pending-lessons-container { transition: min-height 300ms ease; }
+.pending-lessons-wrapper.is-loading .pending-lessons-container { min-height: var(--pl-original-height, 160px); }
+
+/* Card */
+.pending-lesson-card {
+  @apply relative bg-white rounded-xl ring-1 ring-secondary p-4 shadow-sm hover:shadow-md transition-shadow ease-out
+         flex flex-col min-h-[160px];
+}
+.pending-lesson-header { @apply flex items-start justify-between mb-3 border-b border-transparent; }
+.pending-lesson-title { @apply text-xl text-secondary font-semibold m-0 leading-snug; }
+.pending-lesson-body { @apply px-0 pb-0 text-base font-medium text-gray-500 flex-grow; }
+.pending-lesson-footer { @apply mt-auto pt-4; }
+.pending-lesson-actions { @apply flex justify-center gap-4 flex-wrap; }
+
+/* Buttons */
+.pending-lesson-approve-btn,
+.pending-lesson-reject-btn {
+  @apply inline-flex items-center justify-center min-w-[120px] px-5 py-2 text-sm font-semibold rounded-md
+         transition-colors duration-150;
+}
+.pending-lesson-approve-btn {
+  @apply bg-transparent text-secondary ring-1 ring-secondary
+         hover:bg-primary hover:text-white hover:ring-primary
+         focus:bg-primary focus:text-white focus:ring-primary focus:outline-none;
+}
+.pending-lesson-reject-btn {
+  @apply bg-transparent text-secondary ring-1 ring-secondary
+         hover:bg-red-500 hover:text-white hover:ring-red-500
+         focus:bg-red-600 focus:text-white focus:outline-none;
+}
+
+/* Badge variants (status) */
+.pl-badge { @apply inline-flex items-center gap-1 rounded-md px-4 py-1 text-sm font-semibold tracking-wide transition; }
+.pl-badge--pending { @apply bg-secondary text-white; }
+.pl-badge--review  { @apply bg-green-500 text-white; }
+.pl-badge--rejected{ @apply bg-red-500 text-white; }
+.pl-badge--approved{ @apply hidden; }
+
+/* New: flex container for title + badge */
+.pending-lesson-heading-group { @apply flex items-start gap-2; }
+
+/* Modal */
+#pending-lesson-modal { @apply fixed inset-0 z-[100] hidden items-center justify-center; }
+#pending-lesson-modal[aria-hidden="false"] { @apply flex; }
+.pending-lesson-modal-overlay { @apply absolute inset-0 bg-black/50; }
+.pending-lesson-modal-wrapper { @apply relative z-[110] mx-auto w-full max-w-2xl p-4; }
+.pending-lesson-modal-panel { @apply relative w-full rounded-xl bg-white shadow-2xl overflow-hidden flex flex-col; max-height: min(90vh, 720px); }
+.pending-lesson-header-modal { @apply flex items-start justify-between px-6 py-4 border-b border-slate-200 bg-secondary text-white; }
+.pending-lesson-body-modal { @apply px-6 py-5 space-y-4 text-sm flex-1 overflow-y-auto; min-height: 0; }
+@supports (height: 100dvh) { .pending-lesson-modal-panel { max-height: 92dvh; } }
+
+/* View button */
+.pending-lesson-view {
+  @apply inline-flex items-center justify-center w-9 h-9 rounded-full
+         ring-1 ring-secondary text-secondary
+         hover:bg-secondary hover:ring-secondary hover:text-white
+         focus:bg-secondary focus:ring-secondary focus:text-white
+         transition-colors duration-150;
+}
+
+/* Filters */
+.pending-lesson-filters { @apply flex items-center gap-2; }
+.pending-lesson-filter-btn {
+  @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md
+         bg-transparent text-secondary ring-1 ring-secondary
+         hover:bg-secondary hover:text-white hover:ring-secondary transition-colors;
+}
+.pending-lesson-filter-btn.is-active { @apply bg-secondary text-white ring-secondary; }
+
+/* Meta pills */
+.pending-lesson-module { @apply inline-flex items-center text-base font-semibold text-gray-500; }
+.pending-lesson-quarter { @apply inline-flex items-center text-base font-semibold text-gray-500; }
+.pending-lesson-sep { @apply inline-flex items-center text-base font-semibold text-gray-400 select-none; }
+
+/* History list */
+.pl-history-list { @apply max-h-64 overflow-y-auto pr-1; }
+.pl-history-item { @apply flex items-start gap-3; }
+.pl-history-bullet { @apply mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0; }
+.pl-history-content { @apply flex-1; overflow-wrap: anywhere; word-break: break-word; }
+.pl-history-content [data-el="comment"] { @apply whitespace-pre-wrap; overflow-wrap: anywhere; word-break: break-word; }
+.pl-history-meta { @apply text-xs text-gray-500; overflow-wrap: anywhere; word-break: break-word; }
+.pl-history-action { @apply text-xs font-semibold uppercase tracking-wide text-secondary; }
+
+/* Accordion */
+.pl-accordion-btn { @apply w-full flex items-center justify-between rounded-md px-3 py-2 bg-slate-50 text-secondary ring-1 ring-secondary hover:bg-slate-100 transition-colors; }
+.pl-accordion-caret { transition: transform 180ms ease; }
+.pl-accordion.is-open .pl-accordion-caret { transform: rotate(180deg); }
+.pl-accordion-content { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 240ms ease, opacity 160ms ease; margin-top: 0; }
+.pl-accordion.is-open .pl-accordion-content { max-height: 20rem; opacity: 1; margin-top: .5rem; }
+.pl-accordion-panel { @apply rounded-md border-2 border-secondary bg-white p-3; word-break: break-word; overflow-wrap: anywhere; }
+
+/* Animations */
+@keyframes plFadeInUp { from { opacity: 0; transform: translateY(8px);} to { opacity: 1; transform: translateY(0);} }
+@keyframes plFadeOutDown { from { opacity: 1; transform: translateY(0);} to { opacity: 0; transform: translateY(8px);} }
+.pl-anim-in { animation: plFadeInUp .28s ease-out both; will-change: transform, opacity; }
+.pl-anim-out { animation: plFadeOutDown .22s ease-in forwards; will-change: transform, opacity; pointer-events: none; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pending-lesson-card, #pending-lesson-modal { @apply transition-none; }
+  .pl-anim-in, .pl-anim-out { animation: none !important; }
+}
+
+.pl-content-list { @apply max-h-64 overflow-y-auto pr-1 space-y-3; }
+.pl-content-item { @apply leading-relaxed; }
+.pl-content-image { @apply max-w-full h-auto rounded-md border border-slate-200; }
+.pl-content-video { @apply w-full rounded-md border border-slate-200; max-height: 360px; }
+.pl-content-audio { @apply w-full; }
+.pl-content-file { @apply inline-flex items-center gap-2 px-3 py-2 rounded-md ring-1 ring-slate-200 text-secondary hover:bg-slate-50; }
+.pl-content-file-size { @apply text-xs text-gray-500; }
+.pl-content-gallery { @apply grid grid-cols-2 gap-2; }

@@ -1,0 +1,9 @@
+/* Main create_lesson styles */
+/* These styles apply to the overall lesson creation page */
+
+/* Import modular component styles through Vite */
+/* @import 'lesson_management/create/quarter.css';
+   @import 'lesson_management/create/module.css';
+   @import 'lesson_management/create/lesson.css'; */
+
+/* Each component's styles are now in their respective CSS files */

@@ -1,0 +1,37 @@
+@layer components {
+    .btn {
+        @apply px-4 py-2 rounded font-medium transition-colors duration-200;
+    }
+    
+    .btn-primary {
+        @apply bg-blue-600 text-white hover:bg-blue-700;
+    }
+    
+    .btn-secondary {
+        @apply bg-gray-200 text-gray-800 hover:bg-gray-300;
+    }
+    
+    .btn-outline {
+        @apply bg-transparent border border-current;
+    }
+    
+    .btn-sm {
+        @apply px-3 py-1 text-sm;
+    }
+    
+    .btn-lg {
+        @apply px-6 py-3 text-lg;
+    }
+    
+    .tab-button {
+        @apply inline-block px-4 py-2 text-sm font-medium rounded-t-lg;
+    }
+    
+    .tab-active {
+        @apply text-white bg-blue-600;
+    }
+    
+    .tab-inactive {
+        @apply text-gray-600 hover:text-gray-800 hover:bg-gray-100;
+    }
+}

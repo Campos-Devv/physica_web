@@ -1,0 +1,52 @@
+/* Primary color scheme */
+.chart-container {
+    @apply bg-primary rounded-lg p-6 mb-6 shadow-sm;
+}
+
+.chart-header {
+    @apply flex justify-between items-center mb-4;
+}
+
+.chart-value {
+    @apply text-4xl font-bold text-white m-0;
+}
+
+/* Chart metrics/period buttons */
+.chart-metrics {
+    @apply flex gap-3 mt-2 justify-end;
+}
+
+.chart-metric {
+    @apply px-4 py-2 rounded-md text-sm font-medium transition-colors;
+    @apply text-white hover:bg-secondary;
+}
+
+.chart-metric.active {
+    @apply bg-secondary text-white;
+}
+
+/* Chart graph area */
+.chart-graph {
+    @apply h-[300px] relative mt-6;
+    @apply border-t border-gray-200 pt-4;
+}
+
+/* Chart tooltip styles */
+.chart-tooltip {
+    @apply bg-white rounded-md p-3 absolute pointer-events-none;
+    @apply text-gray-800 shadow-lg border border-gray-200;
+}
+
+.chart-tooltip-date {
+    @apply text-sm font-bold mb-2 text-gray-600;
+}
+
+.chart-tooltip-value {
+    @apply text-lg font-semibold text-blue-600;
+}
+
+/* Point marker on the chart line */
+.chart-point {
+    @apply w-3 h-3 rounded-full bg-blue-500 border-2 border-white;
+    @apply absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer;
+}

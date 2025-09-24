@@ -1,0 +1,180 @@
+@import '../../components/loading.css';
+/* Quarter Management Styles */
+.quarters-section {
+    @apply bg-white ring-1 ring-secondary rounded-lg shadow-md p-6 mb-8 transition-all duration-300;
+    @apply relative; /* ensure overlay positions correctly */
+}
+
+/* Header */
+.quarters-header {
+    @apply flex justify-between items-center mb-10;
+}
+.quarters-title {
+    @apply text-xl font-semibold text-secondary;
+}
+
+/* Create button */
+.quarters-section .quarter-create-button {
+    @apply inline-flex items-center justify-center w-10 h-10 rounded-md
+           bg-white text-secondary border border-secondary
+           transition-colors duration-150;
+}
+/* Let the icon inherit the button color */
+.quarter-create-button i { @apply text-inherit; }
+
+/* Hover/active: invert colors and emphasize border */
+.quarter-create-button:hover,
+.quarter-create-button:active {
+    @apply bg-secondary text-white border-secondary;
+}
+
+/* Focus ring for accessibility */
+.quarter-create-button:focus-visible {
+    @apply outline-none ring-2 ring-offset-2 ring-secondary;
+}
+
+/* Empty state */
+#empty-quarters {
+    @apply text-center py-8 text-custom-gray transition-opacity duration-300;
+}
+#empty-quarters .empty-icon {
+    @apply text-4xl mb-3;
+}
+#empty-quarters .empty-text {
+    @apply text-base;
+}
+
+/* Grid */
+.quarters-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+    @apply relative; /* allow the loading overlay to position absolutely */
+    transition: min-height 300ms ease; /* smooth loader height reservation */
+}
+.quarters-grid.is-loading {
+    min-height: var(--quarters-grid-min-height, 160px);
+}
+
+/* Cards */
+.quarter-card {
+    @apply relative bg-white border border-secondary rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer ease-in-out;
+}
+.quarter-card.selected {
+    @apply ring-2 ring-secondary ring-opacity-30 bg-blue-50;
+}
+.quarter-card:hover {
+    @apply transform translate-y-[-2px];
+}
+.quarter-card.fade-out {
+    @apply opacity-0 transform translate-y-2;
+    transition: opacity .2s ease, transform .2s ease;
+}
+.quarter-card.is-loading {
+    @apply opacity-60 cursor-wait;
+    pointer-events: none;
+}
+.quarter-header {
+    @apply flex justify-between items-start mb-3;
+}
+.quarter-header .actions {
+    @apply relative;
+}
+
+/* Dropdown menu */
+.menu-trigger {
+    @apply text-gray-500 hover:text-gray-700 focus:outline-none;
+}
+
+.dropdown-menu {
+    @apply absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg py-1 z-50;
+}
+.dropdown-menu.hidden { display: none; }
+.dropdown-menu.is-open { display: block; }
+.dropdown-item {
+    @apply w-full text-left px-3 py-2 text-sm text-gray-700 hover:bg-gray-50 flex items-center;
+}
+.dropdown-item.danger {
+    @apply text-red-600;
+}
+.dropdown-item.danger:hover {
+    @apply bg-gray-50 text-red-700;
+}
+.quarter-title {
+    @apply font-semibold text-lg text-secondary flex items-center;
+}
+.quarter-created {
+    @apply text-sm text-gray-500 mb-3;
+}
+.quarter-meta {
+    @apply flex justify-between text-sm;
+}
+.quarter-meta .stat {
+    @apply text-gray-600;
+}
+.quarter-meta .cta {
+    @apply text-primary text-sm;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.quarters-grid > div {
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+/* Modal overlay and content */
+.modal-overlay {
+    @apply fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50;
+}
+.modal-content {
+    @apply bg-white rounded-lg shadow-lg w-full max-w-md mx-4 md:mx-auto;
+}
+/* Global modal header (used elsewhere) */
+.modal-header {
+    @apply bg-white border-b p-4 flex justify-between items-center;
+}
+
+/* Quarter-only modal header */
+.quarter-modal-header {
+    /* ensure no inherited gradient interferes */
+    background-image: none !important;
+    @apply bg-secondary text-white border-b p-4 flex justify-between items-center;
+}
+.modal-body {
+    @apply p-4;
+}
+.modal-footer {
+    @apply border-t p-4 flex justify-end space-x-3;
+}
+
+/* Buttons */
+.btn {
+    @apply px-4 py-2 text-sm rounded-md transition-colors;
+}
+.btn-primary {
+    @apply bg-primary text-white hover:bg-opacity-90;
+}
+.btn-secondary {
+    @apply border border-gray-300 hover:bg-gray-50;
+}
+
+.close-button-icon {
+    @apply text-white transform transition-transform duration-300;
+}
+.close-button-icon:hover {
+    @apply rotate-90;
+}
+
+/* Form inputs and hints */
+.quarter-input {
+    @apply w-full px-3 py-2 ring-1 ring-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-primary;
+}
+.form-hint {
+    @apply text-sm text-gray-500 mt-1;
+}
+
+/* Actions (filters removed) */
+.quarters-actions { @apply flex items-center; }
+
+/* Removed footer actions & history panel styles */

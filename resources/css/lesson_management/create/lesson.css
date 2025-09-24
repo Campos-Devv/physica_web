@@ -1,0 +1,130 @@
+/* ========== Base / Layout ========== */
+.lessons-container { @apply transition-all duration-200 ease-in-out; }
+.lessons-grid { @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4; }
+@keyframes lessonFadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.lessons-grid > div { animation: lessonFadeIn 0.3s ease-out forwards; }
+
+/* ========== Lessons Section Container ========== */
+#lessons-section { @apply transition-all duration-300 ease-in-out transform opacity-0 translate-y-4; }
+#lessons-section.hidden { @apply opacity-0; }
+#lessons-section:not(.hidden).active { @apply opacity-100 translate-y-0; }
+.lesson-section { @apply bg-white rounded-lg shadow-md p-6 mb-8 ring-1 ring-secondary; }
+.lesson-panel { @apply relative min-h-[240px]; }
+
+/* ========== Lesson Items (generic) ========== */
+.lesson-item { @apply transition-all duration-200 ease-in-out; }
+.lesson-item:hover { @apply transform translate-y-[-2px] shadow-md; }
+/* Consistent card height */
+.lesson-item { @apply h-full flex flex-col justify-between; min-height: 160px; }
+/* Highlight/entry effect */
+.lesson-item { @apply transform transition-all duration-200 ease-in-out opacity-0 translate-y-2; }
+/* Dropdown inside items */
+.lesson-item .dropdown { @apply relative; }
+.lesson-item .dropdown button { @apply p-2 rounded hover:bg-gray-100 transition-colors focus:outline-none; }
+
+/* ========== Create Lesson button ========== */
+.create-lesson-btn { @apply bg-white text-secondary px-4 py-2 rounded-md flex items-center transition-all duration-200 ease-in-out; }
+.create-lesson-btn:hover { @apply bg-secondary text-white transform translate-y-[-2px]; }
+
+/* ========== Empty/Error states ========== */
+.empty-lessons { @apply text-center py-8 text-custom-gray; }
+.lessons-empty-state { @apply text-center py-8 text-secondary; }
+.lessons-error-state { @apply text-center py-8 text-custom-gray; }
+.lessons-error-state .error-text { @apply mb-3; }
+.lessons-error-retry-btn { @apply px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90; }
+
+/* ========== Notifications ========== */
+.lesson-notification { @apply fixed top-4 right-4 p-4 rounded-lg shadow-md border z-50 transform transition-all duration-300 ease-in-out translate-x-0 flex items-center bg-white; }
+.lesson-notification .notification-close { @apply ml-4 text-gray-400 hover:text-gray-600 transition-colors; }
+
+/* ========== Modal (shared) ========== */
+.lesson-modal-overlay { @apply fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center; }
+.lesson-modal-content { @apply bg-white rounded-lg shadow-lg w-full max-w-md mx-4 md:mx-auto; }
+.lesson-modal-header { @apply border-b p-4 flex justify-between items-center; }
+.lesson-modal-body { @apply p-4; }
+.lesson-modal-footer { @apply border-t p-4 flex justify-end space-x-3; }
+.lesson-modal-close { @apply text-white hover:rotate-90 transition-transform duration-300; }
+
+/* ========== Add Lesson Modal ========== */
+#add-lesson-modal .lesson-modal-content { @apply max-w-4xl h-[80vh] max-h-[80vh] flex flex-col overflow-hidden; }
+#add-lesson-modal .lesson-modal-header { @apply flex-shrink-0; }
+#add-lesson-modal .lesson-modal-body { @apply flex-1 overflow-y-auto; }
+#add-lesson-modal .lesson-modal-footer { @apply flex items-center justify-end gap-3 flex-shrink-0 bg-white; }
+/* Add-section toolbar (sticky) */
+#add-lesson-modal .lesson-modal-body .section-toolbar { @apply sticky bottom-0 bg-white pt-3 mt-3 border-t flex flex-wrap gap-2; }
+/* Disabled toolbar buttons */
+#add-lesson-modal .btn.btn-disabled { @apply opacity-50 cursor-not-allowed; }
+
+/* ========== View Lesson Modal ========== */
+#view-lesson-modal .lesson-modal-content { @apply max-w-3xl h-[80vh] max-h-[80vh] flex flex-col overflow-hidden; }
+#view-lesson-modal .lesson-modal-header { @apply flex-shrink-0; }
+#view-lesson-modal .lesson-modal-body { @apply flex-1 overflow-y-auto; }
+/* Safety wrapping */
+#view-lesson-modal .lesson-modal-content { overflow-wrap: anywhere; word-break: break-word; }
+#view-lesson-title-text, #view-lesson-topic-text { overflow-wrap: anywhere; word-break: break-word; }
+#view-lesson-contents li { @apply break-words; }
+
+/* ========== Lesson Card (UI) ========== */
+.lesson-card { @apply relative bg-white border border-secondary rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow cursor-pointer ease-in-out; }
+.lesson-card-header { @apply flex justify-between items-start; }
+/* Dropdown within card */
+.lesson-card .dropdown-menu { @apply absolute right-0 mt-2 w-48 bg-white border border-gray-100 rounded-md shadow-lg py-1 z-40; }
+.lesson-card .dropdown-item { @apply block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50; }
+.lesson-card .dropdown-item-danger { @apply text-red-600; }
+/* Content text/meta */
+.lesson-description { @apply text-sm text-gray-600 mb-3; }
+.description-label { @apply text-gray-500; }
+.lesson-meta { @apply text-sm text-gray-500 mb-3; }
+/* Hover/selected states */
+.lesson-card:hover { @apply transform translate-y-[-2px] shadow-md shadow-gray-300; }
+.lesson-card.selected { @apply ring-2 ring-secondary bg-blue-50 shadow-none; }
+.lesson-card.selected:hover { @apply ring-2 ring-secondary shadow-none; }
+
+/* ========== Content Box (inside modals) ========== */
+.content-box { @apply border border-secondary rounded-lg p-4 mt-4 bg-white; }
+.content-box-header { @apply flex items-center justify-between mb-3; }
+.content-box-header .title { @apply text-base font-semibold text-secondary; }
+.content-box-header .hint { @apply text-xs text-gray-500; }
+.content-sections { @apply space-y-4; }
+
+/* ========== Dynamic Sections (edit modal) ========== */
+.section { @apply border border-gray-200 rounded-md p-3 bg-white; }
+.section-header .section-drag-handle { @apply text-gray-400 hover:text-gray-600 cursor-move p-1 rounded; }
+/* Drag & drop visuals */
+.section.dragging { @apply opacity-60; }
+.section.drag-over { @apply ring-2 ring-primary ring-offset-1; }
+/* List items inside list section */
+.section ul li { @apply flex items-center justify-between bg-gray-50 px-3 py-2 rounded; }
+.section ul li .remove-item { @apply text-red-600 text-sm hover:underline; }
+
+/* ========== Media Uploader (edit modal) ========== */
+.media-uploader { @apply space-y-3; }
+.media-previews-grid { @apply grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3; }
+.media-empty { @apply text-center py-6 border border-dashed border-gray-200 rounded text-gray-500; }
+.media-dropzone { @apply flex flex-col gap-2 items-center justify-center w-full border-2 border-dashed border-secondary rounded-lg p-8 text-secondary bg-blue-50 cursor-pointer transition-colors; }
+.media-dropzone:focus, .media-dropzone:hover { @apply border-primary bg-white text-primary; }
+.media-dropzone .dz-text .dz-title { @apply block font-medium; }
+.media-dropzone .dz-text .dz-subtitle { @apply block text-xs text-gray-500; }
+.media-actions { @apply flex gap-2; }
+.media-item { @apply relative border border-secondary rounded-lg overflow-hidden bg-white shadow-sm transition-transform; }
+.media-item:hover { @apply scale-[1.02] shadow-md; }
+.media-item .remove-media { @apply absolute top-1 right-1 bg-white/90 hover:bg-white text-gray-600 hover:text-red-600 rounded-full p-1 shadow; }
+.media-item .meta { @apply px-2 py-1 text-[10px] leading-tight text-gray-500 truncate border-t border-gray-100 bg-gray-50; }
+.media-item img, .media-item video { @apply w-full h-32 object-cover bg-gray-100; }
+.media-item audio { @apply w-full p-2 bg-gray-50; }
+.media-thumb { @apply relative border border-gray-200 rounded md:rounded-lg overflow-hidden bg-white; }
+.media-thumb img { @apply w-full h-32 object-cover; }
+.media-thumb:hover::after { content: ' '; @apply absolute inset-0 bg-black; }
+
+/* Document file previews */
+.doc-file-preview { @apply border border-gray-200 rounded-md bg-white w-full h-32 flex items-center justify-center flex-col text-center shadow-sm; }
+.doc-file-preview .doc-ext-badge { @apply uppercase tracking-wide; }
+.doc-file-preview .doc-file-name { @apply text-gray-600; }
+
+/* ========== Forms / Buttons (scoped) ========== */
+.lesson-form-error { @apply mb-4 p-3 bg-red-50 border border-red-200 rounded-md text-red-800 text-sm; }
+.lesson-input { @apply w-full px-3 py-2 ring-1 ring-secondary rounded-md focus:outline-none focus:ring-2 focus:ring-primary; }
+.lesson-section .btn, #add-lesson-modal .btn { @apply px-4 py-2 text-sm rounded-md transition-colors; }
+.lesson-section .btn-primary, #add-lesson-modal .btn-primary { @apply bg-primary text-white hover:bg-opacity-90; }
+.lesson-section .btn-secondary, #add-lesson-modal .btn-secondary { @apply border border-gray-300 hover:bg-gray-50; }
+/* Status badge styles removed (lessons auto-approved, no status UI) */

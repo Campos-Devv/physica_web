@@ -1,0 +1,285 @@
+/* Pending Quarter custom styles (extends Tailwind) */
+.pending-quarters-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4;
+}
+
+/* Base layout wrappers */
+.pending-quarters-wrapper {
+    @apply bg-white ring-1 ring-secondary rounded-lg shadow-md p-6 mb-8 transition-all duration-300 ;
+}
+.pending-quarter-section-header {
+    @apply flex items-center justify-between mb-10;
+}
+.pending-quarter-heading {
+    @apply text-xl font-semibold text-secondary;
+}
+
+/* Empty state */
+.pending-quarter-empty-state {
+    @apply rounded-xl bg-white p-10 text-center;
+}
+.pending-quarter-empty-icon {
+    @apply mx-auto mb-4 flex items-center justify-center text-secondary;
+}
+
+/* Grid container */
+.pending-quarters-container {
+    @apply pending-quarters-grid grid gap-6 sm:grid-cols-2 lg:grid-cols-3 relative; /* removed min-h-full */
+}
+
+/* While loading, give the container height so the overlay can center */
+/* Keep the container at its previous height while loading; allow it to grow once cards render */
+.pending-quarters-container {
+    transition: min-height 300ms ease;
+}
+.pending-quarters-wrapper.is-loading .pending-quarters-container {
+    min-height: var(--pq-original-height, 160px);
+}
+
+/* Card */
+.pending-quarter-card {
+    @apply relative bg-white rounded-xl ring-1 ring-secondary p-4 shadow-sm hover:shadow-md transition-shadow ease-out
+           flex flex-col min-h-[160px]; /* min height; adjust value as needed */
+}
+.pending-quarter-header {
+    @apply flex items-start justify-between mb-3 border-b border-transparent;
+}
+.pending-quarter-title {
+    @apply text-xl text-secondary font-semibold m-0 leading-snug;
+}
+.pending-quarter-body {
+    @apply px-0 pb-0 text-base font-medium text-gray-500 flex-grow;
+}
+.pending-quarter-footer {
+    @apply mt-auto pt-4;
+}
+.pending-quarter-actions {
+    @apply flex justify-center gap-4 flex-wrap; /* center (was justify-end) */
+}
+
+/* Buttons */
+
+.pending-quarter-approve-btn,
+.pending-quarter-reject-btn {
+    @apply inline-flex items-center justify-center min-w-[120px] px-5 py-2 text-sm font-semibold rounded-md
+           transition-colors duration-150;
+}
+
+/* Outline (ring) initial state, fill on hover/focus */
+.pending-quarter-approve-btn {
+    @apply bg-transparent text-secondary ring-1 ring-secondary
+           hover:bg-primary hover:text-white hover:ring-primary
+           focus:bg-primary focus:text-white focus:ring-primary focus:outline-none;
+}
+.pending-quarter-reject-btn {
+    @apply bg-transparent text-secondary ring-1 ring-secondary
+           hover:bg-red-500 hover:text-white hover:ring-red-500
+           focus:bg-red-600 focus:text-white focus:outline-none;
+}
+
+/* Badge variants (status) */
+.pq-badge {
+    @apply inline-flex items-center gap-1 rounded-md px-4 py-1 text-sm font-semibold tracking-wide transition;
+}
+.pq-badge--pending {
+    @apply bg-secondary text-white ;
+}
+.pq-badge--review {
+    @apply bg-green-500 text-white;
+}
+.pq-badge--rejected {
+    @apply bg-red-500 text-white;
+}
+.pq-badge--approved {
+    @apply hidden;
+}
+
+/* New: flex container for title + badge */
+.pending-quarter-heading-group {
+    @apply flex items-start gap-2;
+}
+
+/* Modal */
+#pending-quarter-modal {
+    @apply fixed inset-0 z-[100] hidden items-center justify-center;
+}
+/* Show */
+#pending-quarter-modal[aria-hidden="false"] {
+    @apply flex;
+}
+/* Overlay element (add in Blade if not present) */
+.pending-quarter-modal-overlay {
+    @apply absolute inset-0 bg-black/50;
+}
+
+.pending-quarter-modal-wrapper {
+    @apply relative z-[110] mx-auto w-full max-w-2xl p-4;
+}
+
+.pending-quarter-modal-panel {
+    @apply relative w-full rounded-xl bg-white shadow-2xl overflow-hidden;
+}
+
+/* Header / body / footer refined so radius shows cleanly */
+.pending-quarter-header-modal {
+    @apply flex items-start justify-between px-6 py-4 border-b border-slate-200 bg-secondary text-white;
+}
+.pending-quarter-body-modal {
+    @apply px-6 py-5 space-y-4 text-sm;
+}
+
+/* Constrain modal height and scroll the body when overflowing */
+.pending-quarter-modal-panel {
+    @apply flex flex-col; /* stack header/body/footer */
+    max-height: min(90vh, 720px); /* cap overall height */
+}
+
+.pending-quarter-body-modal {
+    @apply flex-1 overflow-y-auto; /* take remaining space and scroll */
+    min-height: 0; /* allow flex child to shrink for proper scrolling */
+}
+
+/* Better on mobile browsers with dynamic viewport units */
+@supports (height: 100dvh) {
+    .pending-quarter-modal-panel { max-height: 92dvh; }
+}
+
+/* Skeleton state */
+.pq-skeleton {
+    @apply animate-pulse rounded-md bg-slate-200 dark:bg-slate-700;
+}
+
+/* Reduced motion safeguard */
+@media (prefers-reduced-motion: reduce) {
+    .pending-quarter-card,
+    #pending-quarter-modal {
+        @apply transition-none;
+    }
+}
+
+/* Utility for auto-fill grid layout */
+.pq-grid-auto-fill {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+.pending-quarter-view {
+    @apply inline-flex items-center justify-center w-9 h-9 rounded-full
+           ring-1 ring-secondary text-secondary
+           hover:bg-secondary hover:ring-secondary hover:text-white
+           focus:bg-secondary focus:ring-secondary focus:text-white
+           transition-colors duration-150;
+}
+
+/* Optional: make buttons full width on very small screens */
+@media (max-width: 400px) {
+    .pending-quarter-actions {
+        @apply flex-col items-stretch gap-2;
+    }
+    .pending-quarter-approve-btn,
+    .pending-quarter-reject-btn {
+        @apply w-full min-w-0;
+    }
+}
+.pending-quarter-approve-btn i,
+.pending-quarter-reject-btn i {
+    @apply pointer-events-none;
+}
+.pending-quarter-filters {
+    @apply flex items-center gap-2;
+}
+.pending-quarter-filter-btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-md
+           bg-transparent text-secondary ring-1 ring-secondary
+           hover:bg-secondary hover:text-white hover:ring-secondary transition-colors;
+}
+.pending-quarter-filter-btn.is-active {
+    @apply bg-secondary text-white ring-secondary;
+}
+
+/* Optional: lock scroll when modal open */
+.body--modal-open,
+html.body--modal-open {
+    @apply overflow-hidden;
+}
+
+/* Appear/disappear animations for cards */
+@keyframes pqFadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pqFadeOutDown {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(8px); }
+}
+
+.pq-anim-in {
+  animation: pqFadeInUp .28s ease-out both;
+  will-change: transform, opacity;
+}
+.pq-anim-out {
+  animation: pqFadeOutDown .22s ease-in forwards;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pq-anim-in, .pq-anim-out { animation: none !important; }
+}
+
+/* History list */
+.pq-history-list {
+    @apply max-h-64 overflow-y-auto pr-1;
+}
+.pq-history-item {
+    @apply flex items-start gap-3;
+}
+.pq-history-bullet {
+    @apply mt-1 w-2 h-2 rounded-full bg-secondary flex-shrink-0;
+}
+.pq-history-content {
+    @apply flex-1;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.pq-history-content [data-el="comment"] {
+    @apply whitespace-pre-wrap; /* preserve line breaks while wrapping */
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.pq-history-meta {
+    @apply text-xs text-gray-500;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+.pq-history-action {
+    @apply text-xs font-semibold uppercase tracking-wide text-secondary;
+}
+
+/* Accordion (variant B: pill header + carded panel) */
+.pq-accordion-btn {
+    @apply w-full flex items-center justify-between rounded-md px-3 py-2
+           bg-slate-50 text-secondary ring-1 ring-secondary
+           hover:bg-slate-100 transition-colors;
+}
+.pq-accordion-caret { transition: transform 180ms ease; }
+.pq-accordion.is-open .pq-accordion-caret { transform: rotate(180deg); }
+
+.pq-accordion-content {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 240ms ease, opacity 160ms ease;
+    margin-top: 0;
+}
+.pq-accordion.is-open .pq-accordion-content {
+    max-height: 20rem; /* adjust as needed */
+    opacity: 1;
+    margin-top: .5rem;
+}
+.pq-accordion-panel {
+    @apply rounded-md border-2 border-secondary bg-white p-3;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+}
+/* Tweak list inside the panel */
+.pq-history-list { @apply max-h-64 overflow-y-auto pr-1; }
